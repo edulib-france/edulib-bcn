@@ -8,10 +8,25 @@ const logger = {
   error: console.error
 };
 
+const codes = {};
+for (var type in bcn) {
+  if (bcn.hasOwnProperty(type)) {
+    var names = bcn[type];
+    for (var name in names) {
+      if (names.hasOwnProperty(name)) {
+        names[name].forEach((code)=> {
+          var data = codes[code] = codes[code] || [];
+          data.push(name);
+        });
+      }
+    }
+  }
+}
+
 class Bcn {
 
   constructor(options) {
-    this.logger = options.logger || logger
+    this.logger = (options && options.logger) || logger;
   }
 
   getCodes(type, name) {
@@ -26,6 +41,15 @@ class Bcn {
     }
     return [];
   }
+
+  getValues(code) {
+    var values = codes[code];
+    if (!values) {
+      this.logger.error(`unknown code "${code}"`);
+    }
+    return values || [];
+  }
+
 }
 
 module.exports = Bcn;
