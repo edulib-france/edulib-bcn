@@ -9,6 +9,6 @@
   "author": "Éric Hervé <eric.herve@edulib.fr>",
   "license": "ISC",
   "dependencies": {
-    "edulib-tools": "git+ssh://git@bitbucket.org/edulib/edulib-tools.git"
+    "edulib-tools": "git+ssh://git@github.com/edulib-france/edulib-tools.git"
   }
 }
